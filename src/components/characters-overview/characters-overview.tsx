@@ -5,16 +5,13 @@ import { CharacterProfileComponent } from '../character-profile/character-profil
 import { getCharacters } from '../../api/characters';
 
 export const CharactersOverviewComponent = () => {
-  let url = `https://rickandmortyapi.com/api/character/?page=1`;
-  const [currentPage, setCurrentPage] = React.useState<string>(url);
+  const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [characters, setCharacters] = React.useState<ICharacter[]>([]);
-  const [infoPage, setInfoPage] = React.useState<any>({});
 
   React.useEffect(() => {
     const loadCharacters = async () => {
       const data = await getCharacters(currentPage);
       data && setCharacters(data.results);
-      data && setInfoPage(data.info);
     };
     loadCharacters();
     window.scroll({ top: 0, behavior: 'smooth' });
@@ -32,8 +29,8 @@ export const CharactersOverviewComponent = () => {
             ))}
           </div>
           <div className={style['characters-overview-pagination']}>
-            <span onClick={() => (infoPage.prev ? setCurrentPage(infoPage.prev) : '')}>Previous Page</span>
-            <span onClick={() => (infoPage.next ? setCurrentPage(infoPage.next) : '')}>Next Page</span>
+            <span onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}>Previous Page</span>
+            <span onClick={() => setCurrentPage(currentPage + 1)}>Next Page</span>
           </div>
         </div>
       )}

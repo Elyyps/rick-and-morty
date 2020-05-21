@@ -18,7 +18,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Context
 
-This project is an assignment that was realized for the company Housing-Anywhere.
 The objective is to build an application that displays all the profiles of the characters from “Rick and Morty”.
 
 ## Choice of the technologies

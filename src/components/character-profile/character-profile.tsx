@@ -11,6 +11,11 @@ interface ICharacterProfileComponentProps {
 
 export const CharacterProfileComponent = ({ character }: ICharacterProfileComponentProps) => {
   const [currentTab, setCurrentTab] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    setCurrentTab(0);
+  }, [character]);
+
   const tabs: string[] = ['Information', 'Location', 'Episodes'];
   return (
     <div className={style['character-profile']}>
@@ -26,7 +31,7 @@ export const CharacterProfileComponent = ({ character }: ICharacterProfileCompon
         </div>
       </div>
       <div className={style['character-profile-tabs']}>
-        <ProfileTabsComponent tabs={tabs} onTabSelected={setCurrentTab} />
+        <ProfileTabsComponent tabs={tabs} onTabSelected={setCurrentTab} currentTab={currentTab} />
       </div>
       <div className={style['character-profile-body']}>
         {currentTab === 0 ? (
